@@ -4,9 +4,36 @@
     <title>JSeopardy</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="assets/css/reset.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
   </head>
   <body>
-  
+    <header>
+      <h1>JSeopardy</h1>
+    </header>
+    <!-- main container for start page, will hide after game starts -->
+    <main id = "start">
+      <!-- needs to show intro text and needs a start button. also has link to high scores page -->
+      <p>Hello, welcome to the game. </p>
+      <button id = "startBut">Start</button>
+      <button id = "hiScores">View High Scores</button>
+    </main>
+    
+    <main id = "game">
+      <h2 class = "question"></h2>
+      <ul class = "options">
+
+      </ul>
+    </main>
+
+
+    <main id = "hiScores">
+    </main>
+
+
+    <script src="assets/js/script.js"></script>
   </body>
 </html>
