@@ -70,13 +70,12 @@ h1 {
 }
 
 #gamePage h2 {
+  text-align: center;
   font-size: 2.25rem;
-  margin-top: 5%;
-  margin-bottom: 3%;
-
+  margin: 3%
 }
 #gamePage ul {
-  width: 100%;
+  width: 66%;
   text-align: center;
   margin: 1%;
 }
@@ -84,6 +83,12 @@ h1 {
   font-size: 1.5rem;
   margin: 1%;
   line-height: 1.5;
+  border: 2px solid black;
+  background-color: blue;
+}
+
+#gamePage li:hover{
+  background-color: violet
 }
 
 #clock {

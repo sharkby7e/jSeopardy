@@ -21,7 +21,7 @@ var question2 = {
   question: "Which of the following symbol sets are used to contain properties of an Object",
   answers: ["A. ()", "B. {}", "C. (())", "D. <obj></obj>"],
   correct: "B"
-}
+} 
 
 // console.log(question2.correct === question2.answers[1].charAt(0))
 
@@ -46,7 +46,6 @@ function gameLoop() {
   startPage.setAttribute("style", "display: none")
   hiScoreBut.setAttribute("style", "display: none")
   gamePage.setAttribute("style", "display: flex; flex-direction: column; align-items:center")
-
   populateGameBoard()
   // for every element in questions array
   // maybe write next 5 lines to a function
@@ -65,11 +64,33 @@ function gameLoop() {
  // move on to next question
   
 }
-function populateGameBoard(array) {
-  array.forEach(element => {
-    
+
+function populateGameBoard() {
+  if(questions.length == 0){
+    showEndScreen()
+  }
+  var quest = questions.shift()
+  console.log(quest)
+  question.textContent= quest.question
+  var ans = quest.answers
+  ans.forEach(function(element){
+    var li = document.createElement("li") 
+    if(quest.correct === element.charAt(0)){
+      li.setAttribute("data-correct", "true")
+    }
+    li.textContent = element
+    answers.appendChild(li)
   })
 }
+
+answers.addEventListener("click", function{
+  
+})
+
+function showEndScreen(){
+
+}
+
 
 function showHiScores() {
   hiScorePage.setAttribute("style", "display: flex") 
