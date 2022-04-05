@@ -64,44 +64,40 @@ function gameLoop() {
   }
   countdown()
   populateGameBoard()
-  
+  // score = timeLeft
+  // showEndScreen()
+
   // for every element in questions array
   // maybe write next 5 lines to a function
   // write the element.question to question 
-    // iterate thru element.answers to add to ul a new li element
-      // also check to see if first character in each matches element.answer
-        // if so, add data attribute answer true
-        // else add data attribute answer false //maybe this is unnecessary
-  
+  // iterate thru element.answers to add to ul a new li element
+  // also check to see if first character in each matches element.answer
+  // if so, add data attribute answer true
+  // else add data attribute answer false //maybe this is unnecessary
+
   // ul element needs event listener
   // then you can target event and look for data attribute true
   // if true 
   //   add checkmark to screen
   // else 
   //   add x to screen and change timeleft to -10
- // move on to next question
-  
+  // move on to next question
+
 }
 
 function populateGameBoard() {
-  if(questions.length > 0){
-    var quest = questions.shift()
-    question.textContent= quest.question
-    var ans = quest.answers
-    ans.forEach(function(element){
-      var li = document.createElement("li") 
-      if(quest.correct === element.charAt(0)){
-        li.setAttribute("data-correct", "true")
-      }
-      li.textContent = element
-      answers.appendChild(li)
-    })
-
-  }
-  if(questions.length === 0){
-    score = timeLeft
-    showEndScreen()
-  }
+  var quest = questions.shift()
+  question.textContent= quest.question
+  var ans = quest.answers
+  ans.forEach(function(element){
+    var li = document.createElement("li") 
+    if(quest.correct === element.charAt(0)){
+      li.setAttribute("data-correct", "true")
+    }
+    li.textContent = element
+    answers.appendChild(li)
+  })
+    
 }
 
 answers.addEventListener("click", function(e){
@@ -124,6 +120,7 @@ function countdown() {
   clock.textContent = timeLeft
   timeLeft = 75
   var timeInterval = setInterval(function() {
+    
     if (timeLeft > 0) {
       timeLeft--;
       clock.textContent = timeLeft
