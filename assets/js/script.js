@@ -13,15 +13,17 @@ var answers = document.getElementById('answers')
 
 
 var clock = document.getElementById('clock')        
-var timeLeft
+var timeLeft = 150
 
 var score = 0
  
+//event listeners
 startBut.addEventListener("click", gameLoop)
 hiScoreBut.addEventListener("click", showHiScores)
 backButMain.addEventListener("click", showStartPage)
 backButEnd.addEventListener("click", showStartPage)
 
+//question objects
 var question1 = {
   question: "Which of the following would be the best way to remove the last element of an array arr?",
   answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "],
@@ -50,60 +52,47 @@ var question5 = {
   answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "]
 }
 
+//needed to hit all of the questions
 var questionBlank = {
   question: "",
   answers: ["","","",""]
 }
 
-var questionsKeep = [question1, question2, question3, question4, question5, questionBlank]
-var questions = []
+var questionsKeep = [question1, question2, question3, question4, question5, questionBlank] //for replayability
+var questions = [] // for replayability  
 
 function gameLoop() {
   endPage.setAttribute("style", "display: none")
   startPage.setAttribute("style", "display: none")
   hiScoreBut.setAttribute("style", "display: none")
   gamePage.setAttribute("style", "display: flex; flex-direction: column; align-items:center")
-  for (let i = 0; i < questionsKeep.length; i++) { //had to do this for game replayability
+  timeLeft = 75
+  for (let i = 0; i < questionsKeep.length; i++) { // for replayability
     questions.push(questionsKeep[i])  
   }
   countdown()
   populateGameBoard()
-  // score = timeLeft
-  // showEndScreen()
-
-  // for every element in questions array
-  // maybe write next 5 lines to a function
-  // write the element.question to question 
-  // iterate thru element.answers to add to ul a new li element
-  // also check to see if first character in each matches element.answer
-  // if so, add data attribute answer true
-  // else add data attribute answer false //maybe this is unnecessary
-
-  // ul element needs event listener
-  // then you can target event and look for data attribute true
-  // if true 
-  //   add checkmark to screen
-  // else 
-  //   add x to screen and change timeleft to -10
-  // move on to next question
-
 }
 
 function populateGameBoard() {
+  var quest = questions.shift()
+  while(answers.firstChild){
+    answers.removeChild(answers.firstChild)
+  }
   if (questions.length==0){
+    score = timeLeft
     showEndScreen()
   }
-    var quest = questions.shift()
-    question.textContent= quest.question
-    var ans = quest.answers
-    ans.forEach(function(element){
-      var li = document.createElement("li") 
-      if(quest.correct === element.charAt(0)){
-        li.setAttribute("data-correct", "true")
-      }
-      li.textContent = element
-      answers.appendChild(li)
-    })
+  question.textContent= quest.question
+  var ans = quest.answers
+  ans.forEach(function(element){
+    var li = document.createElement("li") 
+    if(quest.correct === element.charAt(0)){
+      li.setAttribute("data-correct", "true")
+    }
+    li.textContent = element
+    answers.appendChild(li)
+  })
 }
 
 answers.addEventListener("click", function(e){
@@ -112,10 +101,7 @@ answers.addEventListener("click", function(e){
     clock.textContent = "✅"
   }else{
     clock.textContent = "❌"
-    timeLeft -= 25
-  }
-  while(answers.firstChild){
-    answers.removeChild(answers.firstChild)
+    timeLeft -= 10
   }
   // console.log(questions)
   populateGameBoard()
@@ -124,12 +110,10 @@ answers.addEventListener("click", function(e){
 
 function countdown() {
   clock.textContent = timeLeft
-  timeLeft = 150 
     var timeInterval = setInterval(function() {
     if(question.textContent == ""){
-      score = timeLeft
       clearInterval(timeInterval)
-      showEndScreen()
+      // showEndScreen()
     }
     if (timeLeft > 0) {
       timeLeft--;
@@ -168,6 +152,23 @@ function showStartPage() {
   hiScorePage.setAttribute("style", "display: none") 
 }
 
+
+
+// for every element in questions array
+// maybe write next 5 lines to a function
+// write the element.question to question 
+// iterate thru element.answers to add to ul a new li element
+// also check to see if first character in each matches element.answer
+// if so, add data attribute answer true
+// else add data attribute answer false //maybe this is unnecessary
+
+// ul element needs event listener
+// then you can target event and look for data attribute true
+// if true 
+//   add checkmark to screen
+// else 
+//   add x to screen and change timeleft to -10
+// move on to next question
 
 // object containing questions
 // maybe name each question as a letter, then you can randomly select a letter from a string of those letters, guess this would work as numbers too
