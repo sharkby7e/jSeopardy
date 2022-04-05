@@ -13,9 +13,14 @@ var answers = document.getElementById('answers')
 
 
 var clock = document.getElementById('clock')        
-var timeLeft = 150
+var timeLeft 
 
 var score = 0
+
+// TODO:
+//  - add form to endPage
+//  - localStorage score saving
+//  - localStorage populate hiScorePage
  
 //event listeners
 startBut.addEventListener("click", gameLoop)
@@ -67,7 +72,7 @@ function gameLoop() {
   startPage.setAttribute("style", "display: none")
   hiScoreBut.setAttribute("style", "display: none")
   gamePage.setAttribute("style", "display: flex; flex-direction: column; align-items:center")
-  timeLeft = 5
+  timeLeft = 75
   questions = []
   for (let i = 0; i < questionsKeep.length; i++) { // for replayability
     questions.push(questionsKeep[i])  
@@ -145,6 +150,7 @@ function showHiScores() {
 
   startPage.setAttribute("style", "display: none")
   hiScoreBut.setAttribute("style", "display: none")
+  endPage.setAttribute("style","display: none")
 }
 
 function showStartPage() {
