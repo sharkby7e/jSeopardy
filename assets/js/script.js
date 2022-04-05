@@ -12,10 +12,42 @@ startBut.addEventListener("click", gameLoop)
 hiScoreBut.addEventListener("click", showHiScores)
 backBut.addEventListener("click", showStartPage)
 
+var question1 = {
+  question: "Which of the following would be the best way to remove the last element of an array arr?",
+  answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "],
+  correct: "C"
+}
+var question2 = {
+  question: "Which of the following symbol sets are used to contain properties of an Object",
+  answers: ["A. ()", "B. {}", "C. (())", "D. <obj></obj>"],
+  correct: "B"
+}
+
+// console.log(question2.correct === question2.answers[1].charAt(0))
+
+var question3 = {
+  question: "Which of the following would be the best way to remove the last element of an array arr?",
+  answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "]
+}
+
+var question4 = {
+  question: "Which of the following would be the best way to remove the last element of an array arr?",
+  answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "]
+}
+
+var question5 = {
+  question: "Which of the following would be the best way to remove the last element of an array arr?",
+  answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "]
+}
+
+var questions = [question1, question2, question3, question4, question5]
+
 function gameLoop() {
   startPage.setAttribute("style", "display: none")
   hiScoreBut.setAttribute("style", "display: none")
   gamePage.setAttribute("style", "display: flex; flex-direction: column; align-items:center")
+
+  populateGameBoard()
   // for every element in questions array
   // maybe write next 5 lines to a function
   // write the element.question to question 
@@ -33,6 +65,11 @@ function gameLoop() {
  // move on to next question
   
 }
+function populateGameBoard(array) {
+  array.forEach(element => {
+    
+  })
+}
 
 function showHiScores() {
   hiScorePage.setAttribute("style", "display: flex") 
@@ -46,33 +83,6 @@ function showStartPage() {
   hiScorePage.setAttribute("style", "display: none") 
 }
 
-var questions = [question1, question2, question3, question4, question5]
-var question1 = {
-  question: "Which of the following would be the best way to remove the last element of an array arr?",
-  answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "],
-  correct: "C"
-}
-
-var question2 = {
-  question: "Which of the following would be the best way to remove the last element of an array arr?",
-  answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "]
-}
-console.log(question2.answers[0])
-
-var question3 = {
-  question: "Which of the following would be the best way to remove the last element of an array arr?",
-  answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "]
-}
-
-var question4 = {
-  question: "Which of the following would be the best way to remove the last element of an array arr?",
-  answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "]
-}
-
-var question5 = {
-  question: "Which of the following would be the best way to remove the last element of an array arr?",
-  answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "]
-}
 
 // object containing questions
 // maybe name each question as a letter, then you can randomly select a letter from a string of those letters, guess this would work as numbers too

@@ -24,7 +24,7 @@ h1 {
   font-family: "Bitter", serif;
   text-align: center;
   font-size: 6rem;
-  color: goldenrod;
+  color: gold;
   margin-top: 5%;
   margin-bottom: 5%;
 }
@@ -64,7 +64,7 @@ h1 {
   background-color: darkblue;
   width : 90%;
   border-radius: 5px;
-  border: 9px ridge gold;
+  border: 9px double darkgrey;
   color: seashell;
   display: none;
 }
@@ -88,7 +88,7 @@ h1 {
 
 #clock {
   font-size: 5rem;
-  color: goldenrod;
+  color: gold;
   margin-bottom: 3%;
   margin-top: 3%
 }
