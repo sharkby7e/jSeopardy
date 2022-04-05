@@ -1,32 +1,62 @@
 var startBut = document.getElementById('startBut')
-var startPage = document.getElementById('start')
-var game = document.getElementById('game')
-var hiScoresBut = document.getElementById('hiScoresButton')
-var hiScoresPage = document.getElementById('hiScores')
-var back = document.getElementById('back')
+var startPage = document.getElementById('startPage')
+var hiScoreBut = document.getElementById('hiScoreBut')
+var hiScorePage = document.getElementById('hiScorePage')
+var backBut = document.getElementById('backBut')
+var gamePage = document.getElementById('gamePage')
 
 var question = document.getElementById('question')
 var answers = document.getElementById('answers')
  
 startBut.addEventListener("click", gameLoop)
-hiScoresBut.addEventListener("click", showHiScores)
-back.addEventListener("click", showStartPage)
+hiScoreBut.addEventListener("click", showHiScores)
+backBut.addEventListener("click", showStartPage)
 
 function gameLoop() {
   startPage.setAttribute("style", "display: none")
-  hiScoresBut.setAttribute("style", "display: none")
+  hiScoreBut.setAttribute("style", "display: none")
+  gamePage.setAttribute("style", "display: flex; flex-direction: column; align-items:center")
+  
 }
 
 function showHiScores() {
-  hiScoresPage.setAttribute("style", "display: flex") 
+  hiScorePage.setAttribute("style", "display: flex") 
   startPage.setAttribute("style", "display: none")
-  hiScoresBut.setAttribute("style", "display: none")
+  hiScoreBut.setAttribute("style", "display: none")
 }
 
 function showStartPage() {
-  hiScoresBut.setAttribute("style", "display: flex")
+  hiScoreBut.setAttribute("style", "display: flex")
   startPage.setAttribute("style", "display: flex")
-  hiScoresPage.setAttribute("style", "display: none") 
+  hiScorePage.setAttribute("style", "display: none") 
+}
+
+var questions = [question1, question2, question3, question4, question5]
+var question1 = {
+  question: "Which of the following would be the best way to remove the last element of an array arr?",
+  answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "],
+  correct: "C"
+}
+
+var question2 = {
+  question: "Which of the following would be the best way to remove the last element of an array arr?",
+  answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "]
+}
+console.log(question2.answers[0])
+
+var question3 = {
+  question: "Which of the following would be the best way to remove the last element of an array arr?",
+  answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "]
+}
+
+var question4 = {
+  question: "Which of the following would be the best way to remove the last element of an array arr?",
+  answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "]
+}
+
+var question5 = {
+  question: "Which of the following would be the best way to remove the last element of an array arr?",
+  answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "]
 }
 
 // object containing questions

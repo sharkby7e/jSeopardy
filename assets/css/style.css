@@ -5,8 +5,12 @@ body {
   font-family: "Bitter", serif;
   font-size: 16px;
   background-color: midnightblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center
 
 }
+
 header {
   display: flex;
   flex-direction: column;
@@ -19,35 +23,72 @@ h1 {
   padding: 1%;
   font-family: "Bitter", serif;
   text-align: center;
-  font-size: 5rem;
-  color: yellow;
+  font-size: 6rem;
+  color: goldenrod;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
-#start {
+#startPage {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#start p {
+#startPage p {
   color: white;
   font-size: 2rem;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 
-#hiScores {
+#hiScorePage {
   display: none;
   flex-direction: column;
   align-items: center;
 }
 
-#hiScores table {
+#hiScorePage table {
   font-size: 2rem;
   width: 67%;
   background-color: seashell;
 }
 
-#hiScores table th {
+#hiScorePage table th {
   border: 2px solid #000;
   padding: 1rem;
+}
+
+#gamePage {
+  background-color: darkblue;
+  width : 90%;
+  border-radius: 5px;
+  border: 9px ridge gold;
+  color: seashell;
+  display: none;
+}
+
+#gamePage h2 {
+  font-size: 2.25rem;
+  margin-top: 5%;
+  margin-bottom: 3%;
+
+}
+#gamePage ul {
+  width: 100%;
+  text-align: center;
+  margin: 1%;
+}
+#gamePage li {
+  font-size: 1.5rem;
+  margin: 1%;
+  line-height: 1.5;
+}
+
+#clock {
+  font-size: 5rem;
+  color: goldenrod;
+  margin-bottom: 3%;
+  margin-top: 3%
 }
