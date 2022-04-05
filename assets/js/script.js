@@ -50,7 +50,12 @@ var question5 = {
   answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "]
 }
 
-var questionsKeep = [question1, question2, question3, question4, question5]
+var questionBlank = {
+  question: "",
+  answers: ["","","",""]
+}
+
+var questionsKeep = [question1, question2, question3, question4, question5, questionBlank]
 var questions = []
 
 function gameLoop() {
@@ -58,7 +63,6 @@ function gameLoop() {
   startPage.setAttribute("style", "display: none")
   hiScoreBut.setAttribute("style", "display: none")
   gamePage.setAttribute("style", "display: flex; flex-direction: column; align-items:center")
-  timeLeft = 75
   for (let i = 0; i < questionsKeep.length; i++) { //had to do this for game replayability
     questions.push(questionsKeep[i])  
   }
@@ -86,18 +90,20 @@ function gameLoop() {
 }
 
 function populateGameBoard() {
-  var quest = questions.shift()
-  question.textContent= quest.question
-  var ans = quest.answers
-  ans.forEach(function(element){
-    var li = document.createElement("li") 
-    if(quest.correct === element.charAt(0)){
-      li.setAttribute("data-correct", "true")
-    }
-    li.textContent = element
-    answers.appendChild(li)
-  })
-    
+  if (questions.length==0){
+    showEndScreen()
+  }
+    var quest = questions.shift()
+    question.textContent= quest.question
+    var ans = quest.answers
+    ans.forEach(function(element){
+      var li = document.createElement("li") 
+      if(quest.correct === element.charAt(0)){
+        li.setAttribute("data-correct", "true")
+      }
+      li.textContent = element
+      answers.appendChild(li)
+    })
 }
 
 answers.addEventListener("click", function(e){
@@ -106,7 +112,7 @@ answers.addEventListener("click", function(e){
     clock.textContent = "✅"
   }else{
     clock.textContent = "❌"
-    timeLeft -= 10
+    timeLeft -= 25
   }
   while(answers.firstChild){
     answers.removeChild(answers.firstChild)
@@ -118,16 +124,20 @@ answers.addEventListener("click", function(e){
 
 function countdown() {
   clock.textContent = timeLeft
-  timeLeft = 75
-  var timeInterval = setInterval(function() {
-    
+  timeLeft = 150 
+    var timeInterval = setInterval(function() {
+    if(question.textContent == ""){
+      score = timeLeft
+      clearInterval(timeInterval)
+      showEndScreen()
+    }
     if (timeLeft > 0) {
       timeLeft--;
       clock.textContent = timeLeft
     } else {
       clearInterval(timeInterval)
     }
-  }, 1000)
+  }, 500)
 }
 
 function showEndScreen(){
