@@ -2,15 +2,25 @@ var startBut = document.getElementById('startBut')
 var startPage = document.getElementById('startPage')
 var hiScoreBut = document.getElementById('hiScoreBut')
 var hiScorePage = document.getElementById('hiScorePage')
-var backBut = document.getElementById('backBut')
+var backButMain = document.getElementById('backButMain')
+var backButEnd = document.getElementById('backButEnd')
 var gamePage = document.getElementById('gamePage')
+var endPage = document.getElementById('endPage')
+var scoreDisp = document.getElementById('scoreDisp')
 
 var question = document.getElementById('question')
 var answers = document.getElementById('answers')
+
+
+var clock = document.getElementById('clock')        
+var timeLeft
+
+var score = 0
  
 startBut.addEventListener("click", gameLoop)
 hiScoreBut.addEventListener("click", showHiScores)
-backBut.addEventListener("click", showStartPage)
+backButMain.addEventListener("click", showStartPage)
+backButEnd.addEventListener("click", showStartPage)
 
 var question1 = {
   question: "Which of the following would be the best way to remove the last element of an array arr?",
@@ -21,7 +31,7 @@ var question2 = {
   question: "Which of the following symbol sets are used to contain properties of an Object",
   answers: ["A. ()", "B. {}", "C. (())", "D. <obj></obj>"],
   correct: "B"
-} 
+}  
 
 // console.log(question2.correct === question2.answers[1].charAt(0))
 
@@ -40,13 +50,21 @@ var question5 = {
   answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "]
 }
 
-var questions = [question1, question2, question3, question4, question5]
+var questionsKeep = [question1, question2, question3, question4, question5]
+var questions = []
 
 function gameLoop() {
+  endPage.setAttribute("style", "display: none")
   startPage.setAttribute("style", "display: none")
   hiScoreBut.setAttribute("style", "display: none")
   gamePage.setAttribute("style", "display: flex; flex-direction: column; align-items:center")
+  timeLeft = 75
+  for (let i = 0; i < questionsKeep.length; i++) { //had to do this for game replayability
+    questions.push(questionsKeep[i])  
+  }
+  countdown()
   populateGameBoard()
+  
   // for every element in questions array
   // maybe write next 5 lines to a function
   // write the element.question to question 
@@ -66,34 +84,70 @@ function gameLoop() {
 }
 
 function populateGameBoard() {
-  if(questions.length == 0){
+  if(questions.length > 0){
+    var quest = questions.shift()
+    question.textContent= quest.question
+    var ans = quest.answers
+    ans.forEach(function(element){
+      var li = document.createElement("li") 
+      if(quest.correct === element.charAt(0)){
+        li.setAttribute("data-correct", "true")
+      }
+      li.textContent = element
+      answers.appendChild(li)
+    })
+
+  }
+  if(questions.length === 0){
+    score = timeLeft
     showEndScreen()
   }
-  var quest = questions.shift()
-  console.log(quest)
-  question.textContent= quest.question
-  var ans = quest.answers
-  ans.forEach(function(element){
-    var li = document.createElement("li") 
-    if(quest.correct === element.charAt(0)){
-      li.setAttribute("data-correct", "true")
-    }
-    li.textContent = element
-    answers.appendChild(li)
-  })
 }
 
-answers.addEventListener("click", function{
-  
+answers.addEventListener("click", function(e){
+  var element = e.target 
+  if (element.getAttribute("data-correct") === "true"){
+    clock.textContent = "✅"
+  }else{
+    clock.textContent = "❌"
+    timeLeft -= 10
+  }
+  while(answers.firstChild){
+    answers.removeChild(answers.firstChild)
+  }
+  // console.log(questions)
+  populateGameBoard()
+
 })
 
-function showEndScreen(){
+function countdown() {
+  clock.textContent = timeLeft
+  timeLeft = 75
+  var timeInterval = setInterval(function() {
+    if (timeLeft > 0) {
+      timeLeft--;
+      clock.textContent = timeLeft
+    } else {
+      clearInterval(timeInterval)
+    }
+  }, 1000)
+}
 
+function showEndScreen(){
+  while(answers.firstChild){      //had to do this because wasn't clearing when time ran out
+    answers.removeChild(answers.firstChild)
+  }
+  endPage.setAttribute("style", "display: flex")
+  hiScoreBut.setAttribute("style", "display: flex")
+  scoreDisp.textContent = score
+
+  gamePage.setAttribute("style", "display: none")
 }
 
 
 function showHiScores() {
   hiScorePage.setAttribute("style", "display: flex") 
+
   startPage.setAttribute("style", "display: none")
   hiScoreBut.setAttribute("style", "display: none")
 }
@@ -101,6 +155,9 @@ function showHiScores() {
 function showStartPage() {
   hiScoreBut.setAttribute("style", "display: flex")
   startPage.setAttribute("style", "display: flex")
+
+  gamePage.setAttribute("style", "display: none")
+  endPage.setAttribute("style", "display: none")
   hiScorePage.setAttribute("style", "display: none") 
 }
 
