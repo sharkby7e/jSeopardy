@@ -16,6 +16,21 @@ function gameLoop() {
   startPage.setAttribute("style", "display: none")
   hiScoreBut.setAttribute("style", "display: none")
   gamePage.setAttribute("style", "display: flex; flex-direction: column; align-items:center")
+  // for every element in questions array
+  // maybe write next 5 lines to a function
+  // write the element.question to question 
+    // iterate thru element.answers to add to ul a new li element
+      // also check to see if first character in each matches element.answer
+        // if so, add data attribute answer true
+        // else add data attribute answer false //maybe this is unnecessary
+  
+  // ul element needs event listener
+  // then you can target event and look for data attribute true
+  // if true 
+  //   add checkmark to screen
+  // else 
+  //   add x to screen and change timeleft to -10
+ // move on to next question
   
 }
 
