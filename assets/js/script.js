@@ -38,8 +38,9 @@ var question2 = {
 // console.log(question2.correct === question2.answers[1].charAt(0))
 
 var question3 = {
-  question: "Which of the following would be the best way to remove the last element of an array arr?",
-  answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "]
+  question: "What is the name of Jerome's cat?" ,
+  answers: ["A. Garfield", "B. Gigil", "C. Basil", "D. Farley"],
+  correct : "D"
 }
 
 var question4 = {
@@ -66,7 +67,8 @@ function gameLoop() {
   startPage.setAttribute("style", "display: none")
   hiScoreBut.setAttribute("style", "display: none")
   gamePage.setAttribute("style", "display: flex; flex-direction: column; align-items:center")
-  timeLeft = 75
+  timeLeft = 5
+  questions = []
   for (let i = 0; i < questionsKeep.length; i++) { // for replayability
     questions.push(questionsKeep[i])  
   }
@@ -75,12 +77,11 @@ function gameLoop() {
 }
 
 function populateGameBoard() {
-  var quest = questions.shift()
   while(answers.firstChild){
     answers.removeChild(answers.firstChild)
   }
+  var quest = questions.shift()
   if (questions.length==0){
-    score = timeLeft
     showEndScreen()
   }
   question.textContent= quest.question
@@ -120,17 +121,20 @@ function countdown() {
       clock.textContent = timeLeft
     } else {
       clearInterval(timeInterval)
+      showEndScreen()
     }
-  }, 500)
+  }, 1000)
 }
 
 function showEndScreen(){
   while(answers.firstChild){      //had to do this because wasn't clearing when time ran out
     answers.removeChild(answers.firstChild)
   }
+  score = timeLeft
+  scoreDisp.textContent = score
+
   endPage.setAttribute("style", "display: flex")
   hiScoreBut.setAttribute("style", "display: flex")
-  scoreDisp.textContent = score
 
   gamePage.setAttribute("style", "display: none")
 }
