@@ -118,5 +118,20 @@ h1 {
   margin-bottom: 5%;
 }
 
+#endPage form {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  color: seashell;
+  font-size: 1.5rem;
+  margin: 1rem
+}
+
+#endPage form input{
+  margin: .8rem
+}
+#hiScoreLabel {
+}
+
 
 

@@ -7,26 +7,35 @@ var backButEnd = document.getElementById('backButEnd')
 var gamePage = document.getElementById('gamePage')
 var endPage = document.getElementById('endPage')
 var scoreDisp = document.getElementById('scoreDisp')
+var hiScoreSubmit = document.getElementById('hiScoreSubmit')
 
 var question = document.getElementById('question')
 var answers = document.getElementById('answers')
 
+// if(localStorage.getItem("scores") ==null){
+//   return
+// }
+
+var score = 0
+var scores = []
 
 var clock = document.getElementById('clock')        
 var timeLeft 
 
-var score = 0
 
 // TODO:
 //  - add form to endPage
+//    - style form
 //  - localStorage score saving
 //  - localStorage populate hiScorePage
+//    - style hiScorePage
  
 //event listeners
 startBut.addEventListener("click", gameLoop)
 hiScoreBut.addEventListener("click", showHiScores)
 backButMain.addEventListener("click", showStartPage)
 backButEnd.addEventListener("click", showStartPage)
+hiScoreSubmit.addEventListener("click", storeHiScores)
 
 //question objects
 var question1 = {
@@ -131,6 +140,13 @@ function countdown() {
   }, 1000)
 }
 
+function storeHiScores() {
+  // new object from form {name: farley, score: score}
+  // pull scores from storage, and parse into scores 
+  // scores.push new object that takes from 
+  // populate table with a loop through the stringified object
+  showHiScores()
+}
 function showEndScreen(){
   while(answers.firstChild){      //had to do this because wasn't clearing when time ran out
     answers.removeChild(answers.firstChild)
@@ -143,7 +159,6 @@ function showEndScreen(){
 
   gamePage.setAttribute("style", "display: none")
 }
-
 
 function showHiScores() {
   hiScorePage.setAttribute("style", "display: flex") 
