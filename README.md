@@ -1,89 +1,81 @@
-# 04 Web APIs: Code Quiz
+# JSeopardy
 
-## Your Task
+## Description 
+The goal of this project was to create a quiz applet to test your coding knowledge. The user is to be presented with a start page,
+and when they hit the start button, a series of questions was to be presented to them. The user will also have to answer the questions
+under time pressure, so a clock was to be implemented into the app. After answering the questions, the user also has the opportunity to 
+save their accomplishment in local storage.
 
-At some point in your journey to become a full-stack web developer, you’ll likely be asked to complete a coding assessment&mdash;perhaps as part of an interview process. A typical coding assessment includes both multiple-choice questions and interactive coding challenges. 
 
-To help familiarize you with these tests and allow you to use the skills covered in this unit, this week’s homework invites you to build a timed coding quiz with multiple-choice questions. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. 
+## Link and Preview of the site
 
-This week’s coursework will equip you with all the skills you need to succeed in this assignment.
+[Click to view the live application](https://sharkby7e.github.io/JSeopardy/)
 
-## User Story
+![Preview of JSeopardy](./assets/img/sitePreview.png)
 
+## Technologies Employed
+
+| Techlogy   | Implementation/Use          |
+|:----------:|-----------------------------|
+|HTML        | Structure of Webpage        |
+|CSS         | Styling of Application      |
+|JavaScript  | Dynamically updating the DOM|
+
+## Key Functions
+
+### countDown 
+
+This was the function that maintained the clock to time the user through their questions. This also provided the
+score to the user in the end. The time went down by 10 every time the user answered a question incorrectly.
+```javascript
+function countdown() {
+  clock.textContent = timeLeft
+    var timeInterval = setInterval(function() {
+    if(question.textContent == ""){
+      clearInterval(timeInterval)
+    }
+    if (timeLeft > 0) {
+      timeLeft--;
+      clock.textContent = timeLeft
+    } else {
+      clearInterval(timeInterval)
+      showEndScreen()
+    }
+  }, 1000)
+}
 ```
-AS A coding boot camp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
+
+### populateGameBoard
+
+This was the main function that wrote the questions to the screen.  It reads through an array of objects that 
+I defined. The objects were all questions that had 3 properties, the question text, an array of answer choices, 
+and the correct answer choice.
+Whichever of the answer choices matched the character with the correct choice, was given a data attribute, which when 
+clicked, would notify the user that they were correct, and would not deduct from their score.
+
+```javascript
+function populateGameBoard() {
+  while(answers.firstChild){
+    answers.removeChild(answers.firstChild)
+  }
+  var quest = questions.shift()
+  if (questions.length==0){
+    showEndScreen()
+  }
+  question.textContent= quest.question
+  var ans = quest.answers
+  ans.forEach(function(element){
+    var li = document.createElement("li") 
+    if(quest.correct === element.charAt(0)){
+      li.setAttribute("data-correct", "true")
+    }
+    li.textContent = element
+    answers.appendChild(li)
+  })
+}
 ```
-
-## Acceptance Criteria
-
-```
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and my score
-```
-
-## Mock-Up
-
-The following animation demonstrates the application functionality:
-
-![A user clicks through an interactive coding quiz, then enters initials to save the high score before resetting and starting over.](./Assets/04-web-apis-homework-demo.gif)
-
-## Grading Requirements
-
-This homework is graded based on the following criteria: 
-
-### Technical Acceptance Criteria: 40%
-
-* Satisfies all of the preceding acceptance criteria.
-
-### Deployment: 32%
-
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository contains application code.
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the homework instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality readme file with description, screenshot, and link to deployed application.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository, with a unique name and a readme describing the project.
-
----
-
-© 2022 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
+## Summary and Learning Points
+This greenfield project was a great opportunity to pay homage to one of my favorite gameshows. I learned how to
+use JavaScript to dynamically update the DOM, which allowed me to have different "pages", revealed to the user. 
+I also employed eventListeners and the timeInterval, both of which were interesting ways to make pages more dynamic
+and interesting to the user. 

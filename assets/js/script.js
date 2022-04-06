@@ -41,32 +41,32 @@ hiScoreSubmit.addEventListener("click", function(e){
 
 //question objects
 var question1 = {
-  question: "Which of the following JS methods would be the best way to remove the last element of an array arr?",
-  answers: ["A. arr.push()", "B. arr.removeLastElement()", "C. arr.pop()", "D. arr.lastElement = null "],
+  question: "The JS method that removes the last element of an array.",
+  answers: ["A. What is arr.push()", "B. What is arr.removeLastElement()", "C. What is arr.pop()", "D. What is arr.lastElement = null "],
   correct: "C"
 }
 var question2 = {
-  question: "Which of the following symbol sets are used to contain properties of an Object",
-  answers: ["A. ()", "B. {}", "C. (())", "D. <obj></obj>"],
+  question: "The symbol set that contains the properties of an Object",
+  answers: ["A. What is ()", "B. What is {}", "C. What is (())", "D. What is <obj></obj>"],
   correct: "B"
 }  
 // console.log(question2.correct === question2.answers[1].charAt(0))
 
 var question3 = {
-  question: "What is the definition of a callback function?" ,
-  answers: ["A. A function called within the definition of a function ", "B. A function that returns your text messages", "C. A function that is a backup for another function", "D. A function that undoes the work of another function"],
+  question: "Callback function" ,
+  answers: ["A. What is a function called within the definition of a function ", "B. What is a function that returns your text messages", "C. What is a function that is a backup for another function", "D. What is a function that undoes the work of another function"],
   correct : "A"
 }
 
 var question4 = {
-  question: "When defining a for loop, what is the purpose of the second statement?",
-  answers: ["A. To define where to begin the loop", "B. To define when to exit the loop", "C. To move on to the next step in the loop", "D. To name the function"],
+  question: "The second statement of a for loop.",
+  answers: ["A. What is used to define where to begin the loop", "B. What is used to define when to exit the loop", "C. What is used to move on to the next step in the loop", "D. What is used to name the function"],
   correct: "B"
 }
 
 var question5 = {
-  question: "What is the name of Jerome's cat?",
-  answers: ["A. Garfield", "B. Gigil", "C. Finch", "D. Farley"],
+  question: "Jerome's cat",
+  answers: ["A. Who is Garfield", "B. Who is Gigil", "C. Who is Finch", "D. Who is Farley"],
   correct: "D" 
 }
 
@@ -142,6 +142,7 @@ function countdown() {
     }
   }, 1000)
 }
+
 function initializeScores() {
   var storedScores = JSON.parse(localStorage.getItem("scores"))
   console.log(storedScores)

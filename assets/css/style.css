@@ -37,11 +37,49 @@ h1 {
 
 #startPage p {
   color: white;
+  text-align: center;
   font-size: 2rem;
+  line-height: 1.2;
+  max-width: 67%;
   margin-top: 5%;
   margin-bottom: 5%;
 }
 
+#startBut {
+  font-size: 1.5rem;
+  margin: 1px;
+  padding: 5px ;
+  color: midnightblue;
+
+}
+
+#hiScoreBut {
+  font-size: 1.5rem;
+  margin: 1px;
+  padding: 5px ;
+  color: midnightblue;
+}
+
+#backButMain {
+  font-size: 1.5rem;
+  margin: 1px;
+  padding: 5px ;
+  color: midnightblue;
+}
+
+#backButEnd {
+  font-size: 1.5rem;
+  margin: 1px;
+  padding: 5px ;
+  color: midnightblue;
+}
+
+#hiScoreSubmit {
+  font-size: 1.5rem;
+  margin: 1px;
+  padding: 5px ;
+  color: midnightblue;
+}
 
 #hiScorePage {
   display: none;
