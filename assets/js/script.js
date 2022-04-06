@@ -84,7 +84,6 @@ function gameLoop() {
   hiScoreBut.setAttribute("style", "display: none")
   gamePage.setAttribute("style", "display: flex; flex-direction: column; align-items:center")
   timeLeft = 75
-  populateScoreBoard()
   questions = []
   for (let i = 0; i < questionsKeep.length; i++) { // for replayability
     questions.push(questionsKeep[i])  
@@ -142,13 +141,19 @@ function countdown() {
     }
   }, 1000)
 }
-function populateScoreBoard() {
-  // pull scores from storage, and parse into scores 
-  var storedScores = JSON.parse(localStorage.getItem("storedScores"))
+function initializeScores() {
+  var storedScores = JSON.parse(localStorage.getItem("scores"))
   console.log(storedScores)
   if(storedScores !== null){
     scores = storedScores
   }
+  populateScoreBoard()
+}
+
+function populateScoreBoard() {
+  //CLEAR TABLE BEFORE REWRITING
+  hiScoreBoard.innerHTML = ""
+  // pull scores from storage, and parse into scores 
   scores.forEach(function(obj){
     var sbName = obj.name
     var sbScore = obj.score
@@ -172,8 +177,9 @@ function storeNewHiScores() {
   }
   scores.push(newScorePair)
   localStorage.setItem("scores",JSON.stringify(scores))
+  showStartPage()
+  populateScoreBoard()
   // populate table with a loop through the stringified object
-  showHiScores()
 }
 
 function showEndScreen(){
@@ -206,6 +212,7 @@ function showStartPage() {
   hiScorePage.setAttribute("style", "display: none") 
 }
 
+initializeScores()
 
 
 // for every element in questions array

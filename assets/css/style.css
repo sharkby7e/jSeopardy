@@ -51,11 +51,16 @@ h1 {
 
 #hiScorePage table {
   font-size: 2rem;
-  width: 67%;
+  width: 100%;
   background-color: seashell;
 }
 
 #hiScorePage table th {
+  border: 2px solid #000;
+  padding: 1rem;
+}
+
+#hiScorePage table td {
   border: 2px solid #000;
   padding: 1rem;
 }
@@ -129,8 +134,6 @@ h1 {
 
 #endPage form input{
   margin: .8rem
-}
-#hiScoreLabel {
 }
 
 
