@@ -84,6 +84,7 @@ function gameLoop() {
   hiScoreBut.setAttribute("style", "display: none")
   gamePage.setAttribute("style", "display: flex; flex-direction: column; align-items:center")
   timeLeft = 75
+  populateScoreBoard()
   questions = []
   for (let i = 0; i < questionsKeep.length; i++) { // for replayability
     questions.push(questionsKeep[i])  
@@ -143,17 +144,17 @@ function countdown() {
 }
 function populateScoreBoard() {
   // pull scores from storage, and parse into scores 
-  var storedScores = localStorage.getItem("storedScores")
-  JSON.parse(storedScores)
+  var storedScores = JSON.parse(localStorage.getItem("storedScores"))
+  console.log(storedScores)
   if(storedScores !== null){
     scores = storedScores
   }
   scores.forEach(function(obj){
     var sbName = obj.name
     var sbScore = obj.score
-    var newRow = document.createElement("<tr>")
-    var newName = document.createElement("<td>")
-    var newScore = document.createElement("<td>")
+    var newRow = document.createElement("tr")
+    var newName = document.createElement("td")
+    var newScore = document.createElement("td")
     newName.textContent = sbName
     newScore.textContent = sbScore
     newRow.appendChild(newName)
@@ -161,6 +162,7 @@ function populateScoreBoard() {
     hiScoreBoard.appendChild(newRow)
   })
 }
+
 function storeNewHiScores() {
   // new object from form {name: farley, score: score}
   var storeName = hiScoreInput.value.trim()
@@ -169,8 +171,7 @@ function storeNewHiScores() {
     score: score
   }
   scores.push(newScorePair)
-  populateScoreBoard()
-  // scores.push new object that takes from 
+  localStorage.setItem("scores",JSON.stringify(scores))
   // populate table with a loop through the stringified object
   showHiScores()
 }
