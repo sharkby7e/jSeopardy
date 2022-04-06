@@ -8,13 +8,12 @@ var gamePage = document.getElementById('gamePage')
 var endPage = document.getElementById('endPage')
 var scoreDisp = document.getElementById('scoreDisp')
 var hiScoreSubmit = document.getElementById('hiScoreSubmit')
+var hiScoreInput = document.getElementById('hiScoreInput')
+var hiScoreBoard = document.getElementById('hiScoreBoard')
 
 var question = document.getElementById('question')
 var answers = document.getElementById('answers')
 
-// if(localStorage.getItem("scores") ==null){
-//   return
-// }
 
 var score = 0
 var scores = []
@@ -35,7 +34,10 @@ startBut.addEventListener("click", gameLoop)
 hiScoreBut.addEventListener("click", showHiScores)
 backButMain.addEventListener("click", showStartPage)
 backButEnd.addEventListener("click", showStartPage)
-hiScoreSubmit.addEventListener("click", storeHiScores)
+hiScoreSubmit.addEventListener("click", function(e){
+  e.preventDefault()
+  storeNewHiScores()
+})
 
 //question objects
 var question1 = {
@@ -139,14 +141,40 @@ function countdown() {
     }
   }, 1000)
 }
-
-function storeHiScores() {
-  // new object from form {name: farley, score: score}
+function populateScoreBoard() {
   // pull scores from storage, and parse into scores 
+  var storedScores = localStorage.getItem("storedScores")
+  JSON.parse(storedScores)
+  if(storedScores !== null){
+    scores = storedScores
+  }
+  scores.forEach(function(obj){
+    var sbName = obj.name
+    var sbScore = obj.score
+    var newRow = document.createElement("<tr>")
+    var newName = document.createElement("<td>")
+    var newScore = document.createElement("<td>")
+    newName.textContent = sbName
+    newScore.textContent = sbScore
+    newRow.appendChild(newName)
+    newRow.appendChild(newScore)
+    hiScoreBoard.appendChild(newRow)
+  })
+}
+function storeNewHiScores() {
+  // new object from form {name: farley, score: score}
+  var storeName = hiScoreInput.value.trim()
+  var newScorePair = {
+    name: storeName,
+    score: score
+  }
+  scores.push(newScorePair)
+  populateScoreBoard()
   // scores.push new object that takes from 
   // populate table with a loop through the stringified object
   showHiScores()
 }
+
 function showEndScreen(){
   while(answers.firstChild){      //had to do this because wasn't clearing when time ran out
     answers.removeChild(answers.firstChild)
