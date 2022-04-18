@@ -9,7 +9,7 @@ save their accomplishment in local storage.
 
 ## Link and Preview of the site
 
-[Click to view the live application](https://sharkby7e.github.io/JSeopardy/)
+[Click to view the live application](https://sharkby7e.github.io/jSeopardy/)
 
 ![Preview of JSeopardy](./assets/img/sitePreview.png)
 
