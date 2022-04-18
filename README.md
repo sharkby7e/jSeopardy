@@ -1,4 +1,4 @@
-# JSeopardy
+# jSeopardy
 
 ## Description 
 The goal of this project was to create a quiz applet to test your coding knowledge. The user is to be presented with a start page,
